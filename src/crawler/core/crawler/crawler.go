@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"sync"
 
+	"github.com/Tejas1234-biradar/DBMS-CP.git/src/crawler/core/pages"
 	"github.com/Tejas1234-biradar/DBMS-CP/src/crawler/core/pages"
 )
 type CrawlerConfig struct{
@@ -29,5 +30,17 @@ func (c* CrawlerConfig)maxPagesReached()(bool){
 	}
 	return false
 }
-
+func(c *CrawlerConfig) addPage(page *pages.Page)error{
+c.Mu.Lock()
+defer c.Mu.Unlock()
+normalizedURL:=page.NormalizedURL
+if _,visited:=c.Pages[normalizedURL];visited {
+	return fmt.Errorf("Page already visited")
+}
+if c.maxPagesReached(){
+	return fmt.Errorf("Max Pages reached cannot add more")
+}
+c.Pages[normalizedURL]=page
+return nil
+}
 
