@@ -2,10 +2,10 @@ package crawler
 
 import (
 	"fmt"
-	"sync"
-
 	"github.com/Tejas1234-biradar/DBMS-CP/src/crawler/core/pages"
 	"github.com/Tejas1234-biradar/DBMS-CP/src/crawler/core/utils"
+	"log"
+	"sync"
 )
 
 type CrawlerConfig struct {
@@ -47,35 +47,29 @@ func (c *CrawlerConfig) addPage(page *pages.Page) error {
 	c.Pages[normalizedURL] = page
 	return nil
 }
-func (c *CrawlerConfig) UpdateLinks(currentURL string, outgoingLinks []string) {
+func (c *CrawlerConfig) UpdateLinks(normalizedCurrentURL string, outgoingLinks []string) {
 	c.Mu.Lock()
 	defer c.Mu.Unlock()
-
-	normalizedCurrentURL, err := utils.NormalizeURL(currentURL)
-	if err != nil {
-		return
-	}
-
-	if _, exists := c.Outlinks[normalizedCurrentURL]; !exists {
-		c.Outlinks[normalizedCurrentURL] = pages.PageNodeConstructor(normalizedCurrentURL)
-	}
+	c.Outlinks[normalizedCurrentURL] = pages.PageNodeConstructor(normalizedCurrentURL)
 
 	for _, link := range outgoingLinks {
-		normalizedOutgoingURL, err := utils.NormalizeURL(link)
-		if err != nil {
-			continue
-		}
+		if utils.IsValidURL(link) {
+			normalizedOutgoingURL, err := utils.NormalizeURL(link)
+			if err != nil {
+				log.Printf("Normalization failed for link: %s\n", link)
+				continue
+			}
 
-		if normalizedOutgoingURL == normalizedCurrentURL {
-			continue
-		}
+			if normalizedOutgoingURL == normalizedCurrentURL {
+				continue
+			}
 
-		if _, exists := c.BackLinks[normalizedOutgoingURL]; !exists {
-			c.BackLinks[normalizedOutgoingURL] = pages.PageNodeConstructor(normalizedOutgoingURL)
-		}
+			if _, exists := c.BackLinks[normalizedOutgoingURL]; !exists {
+				c.BackLinks[normalizedOutgoingURL] = pages.PageNodeConstructor(normalizedOutgoingURL)
+			}
 
-		c.BackLinks[normalizedOutgoingURL].AddLink(normalizedCurrentURL)
-		c.Outlinks[normalizedCurrentURL].AddLink(normalizedOutgoingURL)
+			c.BackLinks[normalizedOutgoingURL].AddLink(normalizedCurrentURL)
+			c.Outlinks[normalizedCurrentURL].AddLink(normalizedOutgoingURL)
+		}
 	}
 }
-

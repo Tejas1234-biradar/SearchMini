@@ -1,7 +1,6 @@
 package crawler
 
 import (
-	"github.com/Tejas1234-biradar/DBMS-CP/src/crawler/core/utils"
 	"golang.org/x/net/html"
 	"net/url"
 	"regexp"
@@ -58,7 +57,6 @@ func traverse(node *html.Node, baseURL *url.URL, linksSet map[string]struct{}) {
 				} else {
 					resolved = baseURL.ResolveReference(u).String()
 				}
-				resolved, err = utils.NormalizeURL(resolved)
 				if err != nil {
 					continue
 				}
