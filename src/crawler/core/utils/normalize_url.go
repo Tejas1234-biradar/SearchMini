@@ -28,4 +28,8 @@ func NormalizeURL(rawURL string) (string, error) {
 	}
 	return normalizedURL, nil
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main
