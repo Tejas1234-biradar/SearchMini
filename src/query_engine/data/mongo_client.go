@@ -345,3 +345,28 @@ func (m *MongoClient) getPageRankBatch(ctx context.Context, urls []string) (map[
 
 	return result, cursor.Err()
 }
+
+// GetRandomPage returns a random page metadata using $sample aggregation.
+func (m *MongoClient) GetRandomPage(ctx context.Context) (*schemas.Metadata, error) {
+	col := m.db.Collection(metadataCollection)
+
+	pipeline := mongo.Pipeline{
+		{{Key: "$sample", Value: bson.D{{Key: "size", Value: 1}}}},
+	}
+
+	cursor, err := col.Aggregate(ctx, pipeline)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(ctx)
+
+	if cursor.Next(ctx) {
+		var meta schemas.Metadata
+		if err := cursor.Decode(&meta); err != nil {
+			return nil, err
+		}
+		return &meta, nil
+	}
+
+	return nil, mongo.ErrNoDocuments
+}
