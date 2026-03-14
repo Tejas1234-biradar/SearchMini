@@ -38,7 +38,7 @@ func worker(
 		if err != nil || docCount == 0 {
 			continue
 		}
-
+//calculate the inverted
 		idf := math.Log10(float64(totalDocs) / float64(1+docCount))
 
 		slog.Info("processing word",
