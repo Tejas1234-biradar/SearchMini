@@ -3,11 +3,13 @@ package data
 import (
 	"context"
 	"fmt"
+	"log/slog"
+	"net/url"
+	"time"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"log/slog"
-	"time"
 
 	"github.com/Tejas1234-biradar/DBMS-CP/src/indexer/schemas"
 )
@@ -25,7 +27,12 @@ type MongoClient struct {
 }
 
 func NewMongoClient(host, username, password, dbName string, port int) (*MongoClient, error) {
-	uri := fmt.Sprintf("mongodb://%s:%s@%s:%d/%s?authSource=admin", username, password, host, port, dbName)
+	encodedPassword := url.QueryEscape(password)
+
+	uri := fmt.Sprintf(
+		"mongodb://%s:%s@%s:%d/%s?authSource=admin&authMechanism=SCRAM-SHA-256",
+		username, encodedPassword, host, port, dbName,
+	)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()

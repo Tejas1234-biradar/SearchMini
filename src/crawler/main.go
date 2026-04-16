@@ -28,7 +28,7 @@ func main() {
 	redisPort := getEnv("REDIS_PORT", "6379")
 	redisPassword := getEnv("REDIS_PASSWORD", "")
 	redisDB := getEnv("REDIS_DB", "0")
-	startingURL := getEnv("STARTING_URL", "https://en.wikipedia.org/wiki/Agnes_Tachyon")
+	startingURL := getEnv("STARTING_URL", "https://en.wikipedia.org/wiki/Computer_science")
 	//connect to redis
 	db := &database.Database{}
 	err := db.ConnectToRedis(redisHost, redisPort, redisPassword, redisDB)

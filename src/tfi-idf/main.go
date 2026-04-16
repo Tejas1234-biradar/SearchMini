@@ -2,8 +2,6 @@ package main
 
 import (
 	"context"
-	"github.com/Tejas1234-biradar/DBMS-CP/src/tfi-idf/data"
-	"go.mongodb.org/mongo-driver/mongo"
 	"log"
 	"log/slog"
 	"math"
@@ -11,6 +9,9 @@ import (
 	"os/signal"
 	"sync"
 	"syscall"
+
+	"github.com/Tejas1234-biradar/DBMS-CP/src/tfi-idf/data"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 var (
@@ -38,7 +39,7 @@ func worker(
 		if err != nil || docCount == 0 {
 			continue
 		}
-//calculate the inverted
+		//calculate the inverted
 		idf := math.Log10(float64(totalDocs) / float64(1+docCount))
 
 		slog.Info("processing word",
@@ -136,8 +137,8 @@ func main() {
 
 	mongoClient, err := data.NewMongoClient(
 		"localhost",
-		"root",
-		"password",
+		"admin",
+		"pass123",
 		"test",
 		27017,
 	)

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#1a1c1c",
+                        "on-secondary-container": "#e3e2e2",
+                        "on-primary-fixed": "#ffffff",
+                        "surface-container-highest": "#353534",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#e4e2e1",
+                        "on-tertiary-container": "#000000",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed": "#ffffff",
+                        "on-primary-container": "#000000",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "on-primary": "#1a1c1c",
+                        "on-surface-variant": "#c6c6c6",
+                        "surface": "#131313",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#929090",
+                        "background": "#131313",
+                        "surface-dim": "#131313",
+                        "secondary-fixed-dim": "#ababab",
+                        "inverse-primary": "#5d5f5f",
+                        "on-background": "#e5e2e1",
+                        "primary-fixed": "#5d5f5f",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-secondary-fixed-variant": "#3a3c3c",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary": "#e4e2e1",
+                        "surface-tint": "#c6c6c7",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary": "#ffffff",
+                        "secondary-container": "#464747",
+                        "tertiary-fixed": "#5f5e5e",
+                        "surface-bright": "#3a3939",
+                        "secondary-fixed": "#c7c6c6",
+                        "on-primary-fixed-variant": "#e2e2e2",
+                        "surface-container": "#201f1f",
+                        "outline-variant": "#474747",
+                        "primary-fixed-dim": "#454747",
+                        "on-surface": "#e5e2e1",
+                        "tertiary-fixed-dim": "#474747",
+                        "primary-container": "#d4d4d4",
+                        "outline": "#919191",
+                        "secondary": "#c7c6c6",
+                        "on-tertiary": "#1b1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen bg-surface">
+<!-- SideNavBar (Predicted Component) -->
+<aside class="hidden lg:flex flex-col h-screen p-4 border-r border-outline-variant/15 bg-surface-container-low fixed left-0 w-64 z-50">
+<div class="flex items-center gap-3 px-4 mb-8">
+<span class="text-xl font-black text-primary font-headline">searchMini</span>
+</div>
+<button class="flex items-center gap-3 px-6 py-4 bg-primary text-on-primary rounded-full font-headline font-bold mb-8 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined">search</span>
+            New Search
+        </button>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-surface-container-high text-primary rounded-full font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">search</span>
+                All
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container hover:text-primary rounded-full transition-all font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">image</span>
+                Images
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container hover:text-primary rounded-full transition-all font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">movie</span>
+                Videos
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container hover:text-primary rounded-full transition-all font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+                News
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container hover:text-primary rounded-full transition-all font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">map</span>
+                Maps
+            </a>
+</nav>
+<div class="mt-auto p-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-xs">person</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-primary">Guest User</span>
+<span class="text-[10px] text-on-surface-variant">The Digital Curator</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar (Predicted Component) -->
+<header class="sticky top-0 z-50 bg-surface/80 backdrop-blur-xl flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-6 flex-1">
+<div class="relative w-full max-w-2xl group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input id="search-input" class="w-full bg-surface-container-high border-none rounded-full py-3 pl-12 pr-12 text-on-surface font-headline focus:ring-1 focus:ring-outline-variant/30 placeholder-outline-variant" type="text" value=""/>
+<div class="absolute inset-y-0 right-4 flex items-center gap-2">
+<div class="px-2 py-1 bg-secondary-container text-on-secondary-container text-[10px] rounded-md font-bold uppercase tracking-wider">AI Mode</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-6">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant">apps</span>
+</button>
+</div>
+</header>
+<!-- Search Results Layout -->
+<div class="flex-1 px-8 py-6 max-w-screen-2xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Column: Search Results -->
+<section id="results-container" class="lg:col-span-7 flex flex-col gap-10">
+    <!-- Results will be injected here -->
+</section>
+<!-- Right Column: Knowledge Panel -->
+<aside id="knowledge-panel" class="lg:col-span-5 flex flex-col gap-6 hidden">
+    <!-- Knowledge panel will be injected here -->
+</aside>
+</div>
+<!-- Footer (Predicted Component) -->
+<footer class="flex flex-col md:flex-row justify-between items-center px-8 py-8 w-full mt-auto bg-surface-container-lowest text-on-surface-variant">
+<div class="text-[10px] font-headline tracking-widest uppercase mb-4 md:mb-0">
+                © 2024 searchMini - The Digital Curator
+            </div>
+<div class="flex gap-8 text-[10px] font-headline tracking-widest uppercase">
+<a class="hover:text-white transition-colors duration-200 underline-offset-4 hover:underline" href="#">Privacy</a>
+<a class="hover:text-white transition-colors duration-200 underline-offset-4 hover:underline" href="#">Terms</a>
+<a class="hover:text-white transition-colors duration-200 underline-offset-4 hover:underline" href="#">Settings</a>
+<a class="hover:text-white transition-colors duration-200 underline-offset-4 hover:underline" href="#">About</a>
+</div>
+</footer>
+</main>
+
+<script>
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById('results-container');
+    const knowledgePanel = document.getElementById('knowledge-panel');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
+
+    if (query) {
+        searchInput.value = query;
+        performSearch(query);
+    }
+
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const newQuery = searchInput.value.trim();
+            if (newQuery) {
+                window.location.href = `/results?q=${encodeURIComponent(newQuery)}`;
+            }
+        }
+    });
+
+    async function performSearch(q) {
+        resultsContainer.innerHTML = '<div class="text-on-surface-variant">Searching...</div>';
+        try {
+            const resp = await fetch(`/api/search?q=${encodeURIComponent(q)}&page=1`);
+            const data = await resp.json();
+
+            if (!data.results || data.results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="flex flex-col gap-4">
+                        <h1 class="text-4xl font-black font-headline text-on-surface">No results found for "${q}"</h1>
+                        <p class="text-on-surface-variant">Try different keywords or check your spelling.</p>
+                    </div>`;
+                return;
+            }
+
+            renderResults(data.results, q, data.total);
+            renderKnowledgePanel(data.results[0]); // Use first result for knowledge panel if relevant
+        } catch (err) {
+            resultsContainer.innerHTML = `<div class="text-error">Error: ${err.message}</div>`;
+        }
+    }
+
+    function renderResults(results, q, total) {
+        let html = `
+            <div>
+                <h1 class="text-4xl font-black font-headline text-on-surface mb-2 tracking-tight">${q}</h1>
+                <p class="text-on-surface-variant font-body">About ${total} results found</p>
+            </div>
+        `;
+
+        results.forEach(res => {
+            html += `
+                <article class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2 text-on-surface-variant text-xs mb-1">
+                        <span class="material-symbols-outlined text-sm">language</span>
+                        <span class="truncate max-w-md">${res.url}</span>
+                    </div>
+                    <h3 class="text-xl font-bold font-headline text-primary hover:underline cursor-pointer transition-all">
+                        <a href="${res.url}">${res.title || 'Untitled Page'}</a>
+                    </h3>
+                    <p class="text-on-surface-variant font-body leading-relaxed max-w-2xl">
+                        ${res.summary_text || res.description || 'No description available for this page.'}
+                    </p>
+                    <div class="flex gap-4 mt-1 text-[10px] text-outline uppercase font-bold tracking-tighter">
+                        <span>Score: ${res.score.toFixed(4)}</span>
+                        <span>PR: ${res.pagerank.toFixed(6)}</span>
+                    </div>
+                </article>
+            `;
+        });
+
+        resultsContainer.innerHTML = html;
+    }
+
+    function renderKnowledgePanel(topRes) {
+        if (!topRes || (!topRes.description && !topRes.summary_text)) {
+            knowledgePanel.classList.add('hidden');
+            return;
+        }
+
+        knowledgePanel.classList.remove('hidden');
+        knowledgePanel.innerHTML = `
+            <div class="bg-surface-container-low rounded-lg overflow-hidden border border-outline-variant/5">
+                <div class="p-6 flex flex-col gap-6">
+                    <h2 class="text-2xl font-black font-headline text-white">${topRes.title || 'Knowledge Summary'}</h2>
+                    <p class="text-sm text-on-surface-variant leading-relaxed">
+                        ${topRes.summary_text || topRes.description}
+                    </p>
+                    <div class="flex flex-col gap-4">
+                        <div class="flex justify-between items-center py-3 border-b border-outline-variant/10">
+                            <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Source</span>
+                            <a href="${topRes.url}" class="text-sm font-medium text-primary hover:underline truncate ml-4">${new URL(topRes.url).hostname}</a>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-outline-variant/10">
+                            <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Score</span>
+                            <span class="text-sm font-medium text-primary">${topRes.score.toFixed(4)}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-primary/5 p-6 rounded-lg border border-primary/10">
+                <h3 class="text-primary font-headline font-bold text-sm flex items-center gap-2 mb-2">
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                    Quick Tip
+                </h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed">
+                    This result was ranked top using our hybrid TF-IDF and PageRank scoring system.
+                </p>
+            </div>
+        `;
+    }
+</script>
+</body></html>

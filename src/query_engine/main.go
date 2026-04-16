@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/Tejas1234-biradar/DBMS-CP/src/query_engine/data"
+	"github.com/Tejas1234-biradar/DBMS-CP/src/query_engine/pagerank"
 	"github.com/Tejas1234-biradar/DBMS-CP/src/query_engine/routes"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -30,8 +31,8 @@ func main() {
 	// DB connection settings
 	mongoHost := getEnv("MONGO_HOST", "localhost")
 	mongoPort, _ := strconv.Atoi(getEnv("MONGO_PORT", "27017"))
-	mongoUser := getEnv("MONGO_USERNAME", "root")
-	mongoPass := getEnv("MONGO_PASSWORD", "password")
+	mongoUser := getEnv("MONGO_USERNAME", "admin")
+	mongoPass := getEnv("MONGO_PASSWORD", "pass123")
 	mongoDB := getEnv("MONGO_DB", "test")
 
 	redisHost := getEnv("REDIS_HOST", "localhost")
@@ -49,6 +50,13 @@ func main() {
 		log.Fatalf("Failed to connect to Mongo: %v", err)
 	}
 	defer mongoClient.Close(ctx)
+
+	// Compute PageRank on startup so query scoring always has fresh graph scores.
+	slog.Info("Computing PageRank scores")
+	if err := pagerank.Run(ctx, mongoClient.Database(), pagerank.DefaultConfig()); err != nil {
+		log.Fatalf("Failed to compute PageRank: %v", err)
+	}
+	slog.Info("PageRank scores updated")
 
 	// Connect to Redis
 	slog.Info("Connecting to Redis", "host", redisHost, "port", redisPort, "db", redisDB)

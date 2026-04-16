@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>searchMini</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#1a1c1c",
+                        "on-secondary-container": "#e3e2e2",
+                        "on-primary-fixed": "#ffffff",
+                        "surface-container-highest": "#353534",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#e4e2e1",
+                        "on-tertiary-container": "#000000",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed": "#ffffff",
+                        "on-primary-container": "#000000",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "on-primary": "#1a1c1c",
+                        "on-surface-variant": "#c6c6c6",
+                        "surface": "#131313",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#929090",
+                        "background": "#131313",
+                        "surface-dim": "#131313",
+                        "secondary-fixed-dim": "#ababab",
+                        "inverse-primary": "#5d5f5f",
+                        "on-background": "#e5e2e1",
+                        "primary-fixed": "#5d5f5f",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-secondary-fixed-variant": "#3a3c3c",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary": "#e4e2e1",
+                        "surface-tint": "#c6c6c7",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary": "#ffffff",
+                        "secondary-container": "#464747",
+                        "tertiary-fixed": "#5f5e5e",
+                        "surface-bright": "#3a3939",
+                        "secondary-fixed": "#c7c6c6",
+                        "on-primary-fixed-variant": "#e2e2e2",
+                        "surface-container": "#201f1f",
+                        "outline-variant": "#474747",
+                        "primary-fixed-dim": "#454747",
+                        "on-surface": "#e5e2e1",
+                        "tertiary-fixed-dim": "#474747",
+                        "primary-container": "#d4d4d4",
+                        "outline": "#919191",
+                        "secondary": "#c7c6c6",
+                        "on-tertiary": "#1b1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen flex flex-col">
+<!-- Top Navigation Shell -->
+<header class="bg-[#131313] dark:bg-[#131313] backdrop-blur-xl bg-opacity-80 docked full-width top-0 sticky z-50 shadow-[0_40px_-10px_rgba(0,0,0,0.12)]">
+<nav class="flex justify-between items-center w-full px-6 py-3 max-w-screen-2xl mx-auto font-manrope text-sm font-medium tracking-tight">
+<div class="flex items-center gap-6">
+<a class="text-[#c6c6c6] hover:text-white transition-colors" href="#">About</a>
+<a class="text-[#c6c6c6] hover:text-white transition-colors" href="#">Store</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-[#c6c6c6] hover:text-white transition-colors" href="#">Gmail</a>
+<a class="text-[#c6c6c6] hover:text-white transition-colors" href="#">Images</a>
+<button class="p-2 hover:bg-[#2a2a2a] rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-[#ffffff]" data-icon="apps">apps</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant/15">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional man with a neutral expression in high-key studio lighting with a clean dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvf1ysbQ1R1oF6DPQvkyvF3U0lfxB0S43tEE8vwXWEv6T9LeCZruM4V8q7RCYlXV_bPGnlY6JRIFhlnrp4dCYgMADWdEUgJKvxe0rVbxJyIE5X6SUj47NvWqRIxw8bJrmkuOXcZXZKUTMDDQK8E3uXXiAB4L5dxwDSVq5XwHQ7HAsTiFnQ2lU367VV2oOtN3sfwwcARgHEw9G5DJhyAneS-Wz6qM-aqx0B8cP-WFUjaYJxcts_0VlhJJeibrn3E0EJdKchz6nH9_Q"/>
+</div>
+</div>
+</nav>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-4 -mt-20">
+<!-- Logo Section -->
+<div class="mb-8">
+<h1 class="text-7xl font-black tracking-tighter text-[#ffffff] font-headline select-none">
+                searchMini
+            </h1>
+</div>
+<!-- Search Bar Hero Component -->
+<div class="w-full max-w-[584px] group">
+<div class="relative flex items-center bg-surface-container-high hover:bg-[#2e2e2e] focus-within:bg-surface-container-high focus-within:ring-1 focus-within:ring-outline-variant/30 rounded-full transition-all duration-300 px-5 py-3 shadow-[0_2px_5px_rgba(0,0,0,0.2)]">
+<span class="material-symbols-outlined text-outline mr-3" data-icon="search">search</span>
+<input id="search-input" class="flex-grow bg-transparent border-none focus:ring-0 text-on-surface text-base py-1" placeholder="Search the web..." type="text"/>
+<div class="flex items-center gap-4 ml-3">
+<button class="flex items-center justify-center text-primary hover:scale-110 transition-transform" title="Search by voice">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+<button class="flex items-center justify-center text-primary hover:scale-110 transition-transform" title="Search by image">
+<span class="material-symbols-outlined" data-icon="photo_camera">photo_camera</span>
+</button>
+</div>
+</div>
+<!-- Suggestions Dropdown -->
+<div id="suggestions" class="hidden absolute w-full max-w-[584px] bg-surface-container-high mt-1 rounded-2xl shadow-xl border border-outline-variant/10 overflow-hidden z-50">
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-3 mt-8">
+<button id="search-btn" class="px-5 py-2.5 bg-surface-container-highest text-on-surface text-sm rounded-md border border-transparent hover:border-outline-variant/30 transition-all font-body active:scale-[0.98]">
+                searchMini Search
+            </button>
+<button id="lucky-btn" class="px-5 py-2.5 bg-surface-container-highest text-on-surface text-sm rounded-md border border-transparent hover:border-outline-variant/30 transition-all font-body active:scale-[0.98]">
+                I'm Feeling Lucky
+            </button>
+</div>
+<!-- Language Availability -->
+<div class="mt-8 text-xs font-label">
+<span class="text-on-surface-variant">searchMini offered in:</span>
+<a class="text-primary ml-2 hover:underline" href="#">Français</a>
+<a class="text-primary ml-2 hover:underline" href="#">Español</a>
+<a class="text-primary ml-2 hover:underline" href="#">Deutsch</a>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-[#131313] dark:bg-[#131313] border-t border-outline-variant/10">
+<div class="px-8 py-3.5 border-b border-outline-variant/10 text-on-surface-variant text-sm font-label">
+            United Kingdom
+        </div>
+<div class="flex flex-col md:flex-row justify-between items-center px-8 py-3.5 w-full font-inter text-xs tracking-wide uppercase">
+<div class="flex gap-6 mb-4 md:mb-0">
+<a class="text-[#919191] hover:text-white transition-colors duration-200 hover:underline underline-offset-4" href="#">Advertising</a>
+<a class="text-[#919191] hover:text-white transition-colors duration-200 hover:underline underline-offset-4" href="#">Business</a>
+<a class="text-[#919191] hover:text-white transition-colors duration-200 hover:underline underline-offset-4" href="#">How Search works</a>
+</div>
+<div class="flex gap-6">
+<a class="text-[#919191] hover:text-white transition-colors duration-200 hover:underline underline-offset-4" href="#">Privacy</a>
+<a class="text-[#919191] hover:text-white transition-colors duration-200 hover:underline underline-offset-4" href="#">Terms</a>
+<a class="text-[#919191] hover:text-white transition-colors duration-200 hover:underline underline-offset-4" href="#">Settings</a>
+</div>
+</div>
+</footer>
+
+<script>
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+    const luckyBtn = document.getElementById('lucky-btn');
+    const suggestionsBox = document.getElementById('suggestions');
+
+    function performSearch() {
+        const query = searchInput.value.trim();
+        if (query) {
+            window.location.href = `/results?q=${encodeURIComponent(query)}`;
+        }
+    }
+
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch();
+    });
+
+    searchBtn.addEventListener('click', performSearch);
+
+    luckyBtn.addEventListener('click', async () => {
+        const query = searchInput.value.trim();
+        if (query) {
+            const resp = await fetch(`/api/search?q=${encodeURIComponent(query)}&page=1`);
+            const data = await resp.json();
+            if (data.results && data.results.length > 0) {
+                window.location.href = data.results[0].url;
+            } else {
+                performSearch();
+            }
+        } else {
+             // Random page if empty
+             const resp = await fetch('/api/random');
+             const data = await resp.json();
+             if (data.url) window.location.href = data.url;
+        }
+    });
+
+    // Simple suggestions logic
+    let debounceTimer;
+    searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(async () => {
+            const query = searchInput.value.trim();
+            if (query.length < 2) {
+                suggestionsBox.classList.add('hidden');
+                return;
+            }
+
+            const resp = await fetch(`/api/suggestions?q=${encodeURIComponent(query)}`);
+            const data = await resp.json();
+            const suggestions = data.suggestions;
+
+            if (suggestions && suggestions.length > 0) {
+                suggestionsBox.innerHTML = suggestions.map(s => `
+                    <div class="px-5 py-2 hover:bg-[#2e2e2e] cursor-pointer text-on-surface border-b border-outline-variant/5 last:border-none" onclick="document.getElementById('search-input').value='${s}'; performSearch();">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-outline text-sm">history</span>
+                            <span>${s}</span>
+                        </div>
+                    </div>
+                `).join('');
+                suggestionsBox.classList.remove('hidden');
+            } else {
+                suggestionsBox.classList.add('hidden');
+            }
+        }, 300);
+    });
+
+    // Close suggestions on click outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.group')) {
+            suggestionsBox.classList.add('hidden');
+        }
+    });
+</script>
+</body></html>

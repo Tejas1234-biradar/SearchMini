@@ -20,9 +20,16 @@ func Register(r *chi.Mux, mongo *data.MongoClient, redis *data.RedisClient) {
 	tracker := middleware.NewSearchTracker(redis)
 
 	// Serve static frontend
-	r.Handle("/*", http.FileServer(http.Dir("./static")))
+	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./static/home.html")
+	})
+	r.Get("/results", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./static/results.html")
+	})
+	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	r.Route("/api", func(r chi.Router) {
+
 		// Search — with search-term tracking middleware
 		r.With(tracker).Get("/search", searchH.Search)
 

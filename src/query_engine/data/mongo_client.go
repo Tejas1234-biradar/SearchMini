@@ -25,6 +25,12 @@ type MongoClient struct {
 	db     *mongo.Database
 }
 
+// Database exposes the underlying database handle for read/write operations
+// needed by other query engine modules (e.g., PageRank computation).
+func (m *MongoClient) Database() *mongo.Database {
+	return m.db
+}
+
 func NewMongoClient(host, username, password, dbName string, port int) (*MongoClient, error) {
 	uri := fmt.Sprintf(
 		"mongodb://%s:%s@%s:%d/%s?authSource=admin",

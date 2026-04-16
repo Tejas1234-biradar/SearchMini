@@ -51,9 +51,9 @@ func main() {
 	// MONGO ENV VARIABLES
 	mongoHost := getEnv("MONGO_HOST", "localhost")
 	mongoPort, _ := strconv.Atoi(getEnv("MONGO_PORT", "27017"))
-	mongoPassword := getEnv("MONGO_PASSWORD", "")
-	mongoDB := getEnv("MONGO_DB", "test")
-	mongoUsername := getEnv("MONGO_USERNAME", "")
+	mongoUsername := getEnv("MONGO_USERNAME", "admin")
+	mongoPassword := getEnv("MONGO_PASSWORD", "pass123")
+	mongoDB := getEnv("MONGO_DB", "mongo-test") // IMPORTANT
 
 	// CONNECT TO REDIS
 	log.Println("Initializing Redis...")
