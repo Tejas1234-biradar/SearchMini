@@ -20,10 +20,6 @@ export default function ResultCard({ result }: ResultCardProps) {
         {result.title || 'Untitled page'}
       </a>
       <p className="text-sm leading-7 text-on-surface-variant">{result.summary_text || result.description || 'No description available.'}</p>
-      <div className="flex flex-wrap gap-4 text-[0.7rem] uppercase tracking-[0.18em] text-outline">
-        <span>Score: {result.score.toFixed(4)}</span>
-        <span>PageRank: {result.pagerank.toFixed(6)}</span>
-      </div>
     </article>
   );
 }

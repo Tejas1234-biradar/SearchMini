@@ -71,18 +71,11 @@ export default function SearchPage() {
     }
   };
 
-  const topResult = useMemo(() => results[0], [results]);
-
   return (
     <div className="min-h-screen bg-surface text-on-surface">
       <header className="sticky top-0 z-50 border-b border-surface-border/60 bg-surface/95 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href="/" className="text-2xl font-black text-primary">searchMini</a>
-            <div className="rounded-full border border-outline bg-surface-muted px-2 py-1 text-[0.75rem] uppercase tracking-[0.25em] text-secondary">
-              Search
-            </div>
-          </div>
+          <a href="/" className="text-2xl font-black text-primary">searchMini</a>
           <ThemeToggle />
         </div>
       </header>
@@ -108,7 +101,7 @@ export default function SearchPage() {
           />
         </div>
 
-        <section className="grid gap-10 lg:grid-cols-[2fr_1fr]">
+        <section className="space-y-6">
           <div className="space-y-6">
             <div className="rounded-3xl border border-surface-border bg-surface-muted p-6">
               <p className="text-sm text-secondary">About {total.toLocaleString()} results</p>
@@ -125,46 +118,6 @@ export default function SearchPage() {
               results.map((result) => <ResultCard key={result.url} result={result} />)
             )}
           </div>
-
-          <aside className="hidden lg:block">
-            {topResult ? (
-              <div className="space-y-6 rounded-3xl border border-surface-border bg-surface-muted p-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-primary">Top result summary</h3>
-                  <p className="mt-3 text-sm leading-7 text-secondary">{topResult.summary_text || topResult.description || 'This result is ranked highest for the current query.'}</p>
-                </div>
-                <div className="rounded-3xl border border-outline bg-surface-strong p-5">
-                  <div className="mb-3 flex items-center justify-between text-xs uppercase tracking-[0.25em] text-secondary">
-                    <span>Source</span>
-                    <a
-                      href={topResult.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-primary hover:underline"
-                    >
-                      {(() => {
-                        try {
-                          return new URL(topResult.url).hostname;
-                        } catch {
-                          return topResult.url;
-                        }
-                      })()}
-                    </a>
-                  </div>
-                  <div className="flex flex-col gap-3 text-sm text-on-surface-variant">
-                    <div className="rounded-2xl bg-surface-border/10 p-4">
-                      <span className="block text-[0.7rem] uppercase tracking-[0.25em] text-secondary">Score</span>
-                      <span className="mt-1 block text-lg font-semibold text-primary">{topResult.score.toFixed(4)}</span>
-                    </div>
-                    <div className="rounded-2xl bg-surface-border/10 p-4">
-                      <span className="block text-[0.7rem] uppercase tracking-[0.25em] text-secondary">PageRank</span>
-                      <span className="mt-1 block text-lg font-semibold text-primary">{topResult.pagerank.toFixed(6)}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : null}
-          </aside>
         </section>
       </main>
     </div>
