@@ -1,0 +1,15 @@
+{
+  "name": "searchmini-monorepo",
+  "private": true,
+  "packageManager": "npm@10.0.0",
+  "workspaces": [
+    "frontend",
+    "packages/shared"
+  ],
+  "scripts": {
+    "dev": "npm --workspace frontend run dev",
+    "build": "npm run build --workspace @searchmini/shared && npm run build --workspace frontend",
+    "lint": "npm --workspace frontend run lint",
+    "format": "npm --workspace frontend run format"
+  }
+}

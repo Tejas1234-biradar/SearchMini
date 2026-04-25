@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --background: 30 27 36;
+  --foreground: 232 222 233;
+  --surface: 30 27 36;
+  --surface-strong: 40 34 54;
+  --surface-muted: 37 32 47;
+  --surface-border: 79 69 92;
+  --surface-container-low: 32 27 41;
+  --primary: 245 194 231;
+  --secondary: 205 214 244;
+  --accent: 250 179 135;
+  --on-surface: 232 222 233;
+  --on-surface-variant: 200 192 185;
+  --outline: 127 118 140;
+}
+
+html[data-theme='catppuccin'] {
+  color-scheme: light;
+  --background: 249 238 247;
+  --foreground: 92 82 127;
+  --surface: 251 243 247;
+  --surface-strong: 233 225 234;
+  --surface-muted: 246 238 247;
+  --surface-border: 216 207 220;
+  --surface-container-low: 249 241 248;
+  --primary: 140 116 200;
+  --secondary: 111 106 168;
+  --accent: 245 194 213;
+  --on-surface: 76 69 100;
+  --on-surface-variant: 126 118 149;
+  --outline: 180 167 197;
+}
+
+html[data-theme='mocha'] {
+  color-scheme: dark;
+  --background: 30 27 36;
+  --foreground: 232 222 233;
+  --surface: 30 27 36;
+  --surface-strong: 40 34 54;
+  --surface-muted: 37 32 47;
+  --surface-border: 79 69 92;
+  --surface-container-low: 32 27 41;
+  --primary: 245 194 231;
+  --secondary: 205 214 244;
+  --accent: 250 179 135;
+  --on-surface: 232 222 233;
+  --on-surface-variant: 200 192 185;
+  --outline: 127 118 140;
+}
+
+html[data-theme='solarized-light'] {
+  color-scheme: light;
+  --background: 235 199 234;
+  --foreground: 107 91 42;
+  --surface: 255 253 242;
+  --surface-strong: 247 237 198;
+  --surface-muted: 255 248 220;
+  --surface-border: 217 201 122;
+  --surface-container-low: 255 251 234;
+  --primary: 199 154 0;
+  --secondary: 140 122 61;
+  --accent: 230 184 0;
+  --on-surface: 107 91 42;
+  --on-surface-variant: 138 122 71;
+  --outline: 205 187 106;
+}
+
+html[data-theme='quiet-light'] {
+  color-scheme: light;
+  --background: 250 248 255;
+  --foreground: 63 55 87;
+  --surface: 255 255 255;
+  --surface-strong: 241 236 255;
+  --surface-muted: 247 244 255;
+  --surface-border: 216 208 239;
+  --surface-container-low: 249 246 255;
+  --primary: 109 91 208;
+  --secondary: 138 126 196;
+  --accent: 177 151 252;
+  --on-surface: 63 55 87;
+  --on-surface-variant: 106 98 133;
+  --outline: 184 175 216;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: rgb(var(--background) / 1);
+  color: rgb(var(--foreground) / 1);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}

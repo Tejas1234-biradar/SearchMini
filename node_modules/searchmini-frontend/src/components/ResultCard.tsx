@@ -1,0 +1,29 @@
+import type { SearchResult } from '@searchmini/shared';
+
+interface ResultCardProps {
+  result: SearchResult;
+}
+
+export default function ResultCard({ result }: ResultCardProps) {
+  return (
+    <article className="space-y-3 rounded-3xl border border-outline bg-surface-muted p-6 transition hover:border-surface-border/80 hover:bg-surface-strong">
+      <div className="flex flex-wrap items-center gap-2 text-xs text-on-surface-variant">
+        <span className="material-symbols-outlined text-sm">language</span>
+        <span className="truncate max-w-full break-words">{result.url}</span>
+      </div>
+      <a
+        href={result.url}
+        target="_blank"
+        rel="noreferrer"
+        className="block text-2xl font-semibold text-primary transition hover:underline"
+      >
+        {result.title || 'Untitled page'}
+      </a>
+      <p className="text-sm leading-7 text-on-surface-variant">{result.summary_text || result.description || 'No description available.'}</p>
+      <div className="flex flex-wrap gap-4 text-[0.7rem] uppercase tracking-[0.18em] text-outline">
+        <span>Score: {result.score.toFixed(4)}</span>
+        <span>PageRank: {result.pagerank.toFixed(6)}</span>
+      </div>
+    </article>
+  );
+}

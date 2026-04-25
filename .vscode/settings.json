@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^python -c 'import pathlib, re; t=pathlib\\.Path\\(\"src/index\\.css\"\\)\\.read_text\\(\\); def h\\(m\\): hexv=m\\.group\\(1\\); hexv=hexv if len\\(hexv\\)==6 else \"\"\\.join\\(2\\*c for c in hexv\\); return f\"\\{int\\(hexv\\[0:2\\],16\\)\\} \\{int\\(hexv\\[2:4\\],16\\)\\} \\{int\\(hexv\\[4:6\\],16\\)\\}\"; new=re\\.sub\\(r\"#\\(\\[0-9a-fA-F\\]\\{6\\}\\|\\[0-9a-fA-F\\]\\{3\\}\\)\", h, t\\); pathlib\\.Path\\(\"src/index\\.css\"\\)\\.write_text\\(new\\); print\\(\"converted\"\\)'$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
