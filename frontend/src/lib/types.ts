@@ -18,7 +18,3 @@ export interface SearchApiResponse {
 export interface SuggestionResponse {
   suggestions: string[];
 }
-
-export interface RandomResponse {
-  url: string;
-}

@@ -7,7 +7,6 @@ interface SearchBarProps {
   suggestions: string[];
   onChange: (value: string) => void;
   onSearch: () => void;
-  onLucky: () => void;
   onSelectSuggestion: (value: string) => void;
 }
 
@@ -18,7 +17,6 @@ export default function SearchBar({
   suggestions,
   onChange,
   onSearch,
-  onLucky,
   onSelectSuggestion
 }: SearchBarProps) {
   return (
@@ -43,8 +41,11 @@ export default function SearchBar({
             {loading ? (
               <span className="text-sm text-on-surface-variant">Loading...</span>
             ) : null}
-            <button type="button" onClick={onLucky} className="flex-shrink-0 rounded-full px-3 py-2 text-sm text-on-surface transition hover:bg-surface-border">
-              Lucky
+            <button
+              type="submit"
+              className="flex-shrink-0 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition hover:opacity-90"
+            >
+              Search
             </button>
           </div>
         </div>

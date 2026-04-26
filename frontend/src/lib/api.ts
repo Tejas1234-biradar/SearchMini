@@ -1,4 +1,4 @@
-import type { RandomResponse, SearchApiResponse, SuggestionResponse } from './types';
+import type { SearchApiResponse, SuggestionResponse } from './types';
 
 const apiBase = '/api';
 
@@ -27,9 +27,3 @@ export async function fetchSearchResults(query: string, page = 1): Promise<Searc
   return parseJsonResponse<SearchApiResponse>(response, 'Failed to fetch search results');
 }
 
-export async function fetchRandomUrl(): Promise<string | null> {
-  const response = await fetch(`${apiBase}/random`);
-  if (!response.ok) return null;
-  const data = await parseJsonResponse<RandomResponse>(response, 'Failed to fetch random URL');
-  return data.url || null;
-}

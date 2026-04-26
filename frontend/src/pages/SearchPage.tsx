@@ -78,6 +78,7 @@ export default function SearchPage() {
   };
 
   const topResult = useMemo(() => results[0], [results]);
+  const hasResults = !loading && !error && results.length > 0;
 
   return (
     <div className="min-h-screen bg-surface text-on-surface">
@@ -106,7 +107,6 @@ export default function SearchPage() {
             placeholder="Search again..."
             onChange={setSearchTerm}
             onSearch={handleSearch}
-            onLucky={() => navigate(`/search?q=${encodeURIComponent(searchTerm)}`)}
             onSelectSuggestion={(value) => {
               setSearchTerm(value);
               navigate(`/search?q=${encodeURIComponent(value)}`);
@@ -133,7 +133,7 @@ export default function SearchPage() {
           </div>
 
           <aside className="hidden lg:block">
-            {topResult ? (
+            {hasResults && topResult ? (
               <div className="space-y-6 rounded-3xl border border-surface-border bg-surface-muted p-6">
                 <div>
                   <h3 className="text-lg font-semibold text-primary">Top result summary</h3>
