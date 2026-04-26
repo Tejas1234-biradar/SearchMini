@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
+	"net/url"
 
 	"github.com/Tejas1234-biradar/DBMS-CP/src/query_engine/schemas"
 	"go.mongodb.org/mongo-driver/bson"
@@ -32,11 +33,15 @@ func (m *MongoClient) Database() *mongo.Database {
 }
 
 func NewMongoClient(host, username, password, dbName string, port int) (*MongoClient, error) {
+	encodedPassword := url.QueryEscape(password)
 	uri := fmt.Sprintf(
 		"mongodb://%s:%s@%s:%d/%s?authSource=admin",
-		username, password, host, port, dbName,
+		username, encodedPassword, host, port, dbName,
 	)
+	return NewMongoClientFromURI(uri, dbName)
+}
 
+func NewMongoClientFromURI(uri, dbName string) (*MongoClient, error) {
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(uri))
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to mongo: %w", err)

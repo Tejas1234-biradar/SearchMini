@@ -6,6 +6,37 @@ import ResultCard from '../components/ResultCard';
 import ThemeToggle from '../components/ThemeToggle';
 import type { SearchResult } from '../lib/types';
 
+const PRIORITY_DOMAINS = ['google.com', 'youtube.com', 'linkedin.com'];
+
+function getHostname(rawUrl: string): string {
+  try {
+    const normalized = rawUrl.startsWith('http://') || rawUrl.startsWith('https://')
+      ? rawUrl
+      : `https://${rawUrl}`;
+    return new URL(normalized).hostname.toLowerCase();
+  } catch {
+    return '';
+  }
+}
+
+function domainPriority(result: SearchResult): number {
+  const hostname = getHostname(result.url);
+  const matchIndex = PRIORITY_DOMAINS.findIndex(
+    (domain) => hostname === domain || hostname.endsWith(`.${domain}`),
+  );
+  return matchIndex === -1 ? Number.MAX_SAFE_INTEGER : matchIndex;
+}
+
+function reorderByPreferredDomains(items: SearchResult[]): SearchResult[] {
+  return items
+    .map((item, index) => ({ item, index, priority: domainPriority(item) }))
+    .sort((a, b) => {
+      if (a.priority !== b.priority) return a.priority - b.priority;
+      return a.index - b.index;
+    })
+    .map((entry) => entry.item);
+}
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -39,7 +70,7 @@ export default function SearchPage() {
 
     fetchSearchResults(query)
       .then((data) => {
-        setResults(data.results || []);
+        setResults(reorderByPreferredDomains(data.results || []));
         setTotal(data.total || 0);
       })
       .catch((err) => {
