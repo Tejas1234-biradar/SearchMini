@@ -6,7 +6,50 @@ import ResultCard from '../components/ResultCard';
 import ThemeToggle from '../components/ThemeToggle';
 import type { SearchResult } from '../lib/types';
 
-const PRIORITY_DOMAINS = ['google.com', 'youtube.com', 'linkedin.com'];
+const SYNTHETIC_RESULTS_BY_QUERY: Array<{
+  pattern: RegExp;
+  result: SearchResult;
+}> = [
+  {
+    pattern: /\bgoogle\b/i,
+    result: {
+      url: 'google.com',
+      title: 'Google',
+      description: 'Search on Google',
+      summary_text: 'Promoted result.',
+      last_crawled: '',
+      tfidf_weight: 0,
+      pagerank: 0,
+      score: Number.MAX_SAFE_INTEGER,
+    },
+  },
+  {
+    pattern: /\byoutube\b/i,
+    result: {
+      url: 'youtube.com',
+      title: 'YouTube',
+      description: 'Search on YouTube',
+      summary_text: 'Promoted result.',
+      last_crawled: '',
+      tfidf_weight: 0,
+      pagerank: 0,
+      score: Number.MAX_SAFE_INTEGER,
+    },
+  },
+  {
+    pattern: /\blinkedin\b/i,
+    result: {
+      url: 'linkedin.com',
+      title: 'LinkedIn',
+      description: 'Search on LinkedIn',
+      summary_text: 'Promoted result.',
+      last_crawled: '',
+      tfidf_weight: 0,
+      pagerank: 0,
+      score: Number.MAX_SAFE_INTEGER,
+    },
+  },
+];
 
 function getHostname(rawUrl: string): string {
   try {
@@ -19,22 +62,13 @@ function getHostname(rawUrl: string): string {
   }
 }
 
-function domainPriority(result: SearchResult): number {
-  const hostname = getHostname(result.url);
-  const matchIndex = PRIORITY_DOMAINS.findIndex(
-    (domain) => hostname === domain || hostname.endsWith(`.${domain}`),
-  );
-  return matchIndex === -1 ? Number.MAX_SAFE_INTEGER : matchIndex;
-}
-
-function reorderByPreferredDomains(items: SearchResult[]): SearchResult[] {
-  return items
-    .map((item, index) => ({ item, index, priority: domainPriority(item) }))
-    .sort((a, b) => {
-      if (a.priority !== b.priority) return a.priority - b.priority;
-      return a.index - b.index;
-    })
-    .map((entry) => entry.item);
+function prependSyntheticResults(items: SearchResult[], rawQuery: string): SearchResult[] {
+  const existingHosts = new Set(items.map((item) => getHostname(item.url)));
+  const synthetic = SYNTHETIC_RESULTS_BY_QUERY
+    .filter(({ pattern }) => pattern.test(rawQuery))
+    .map(({ result }) => result)
+    .filter((item) => !existingHosts.has(getHostname(item.url)));
+  return [...synthetic, ...items];
 }
 
 function useQuery() {
@@ -70,7 +104,7 @@ export default function SearchPage() {
 
     fetchSearchResults(query)
       .then((data) => {
-        setResults(reorderByPreferredDomains(data.results || []));
+        setResults(prependSyntheticResults(data.results || [], query));
         setTotal(data.total || 0);
       })
       .catch((err) => {
