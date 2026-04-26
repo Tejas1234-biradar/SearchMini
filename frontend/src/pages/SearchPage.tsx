@@ -143,14 +143,15 @@ export default function SearchPage() {
                   <div className="mb-3 flex items-center justify-between text-xs uppercase tracking-[0.25em] text-secondary">
                     <span>Source</span>
                     <a
-                      href={topResult.url}
+                      href={topResult.url.startsWith('http') ? topResult.url : `https://${topResult.url}`}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="text-primary hover:underline"
                     >
                       {(() => {
                         try {
-                          return new URL(topResult.url).hostname;
+                          const normalized = topResult.url.startsWith('http') ? topResult.url : `https://${topResult.url}`;
+                          return new URL(normalized).hostname;
                         } catch {
                           return topResult.url;
                         }

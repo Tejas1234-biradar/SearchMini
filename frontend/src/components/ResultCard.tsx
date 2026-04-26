@@ -36,8 +36,16 @@ export default function ResultCard({ result }: ResultCardProps) {
 
   return (
     <article className="space-y-3 rounded-3xl border border-outline bg-surface-muted p-6">
-      <div className="text-xs text-on-surface-variant">
-        {result.url}
+      <div className="flex items-center gap-2 text-xs text-on-surface-variant">
+        <span className="material-symbols-outlined text-sm">language</span>
+        <a
+          href={finalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="truncate max-w-md hover:underline"
+        >
+          {result.url}
+        </a>
       </div>
 
       <a
@@ -48,6 +56,11 @@ export default function ResultCard({ result }: ResultCardProps) {
       >
         {displayTitle}
       </a>
+
+      <div className="flex gap-4 mt-1 text-[0.65rem] text-outline uppercase font-bold tracking-tight">
+        <span>Score: {result.score.toFixed(4)}</span>
+        <span>PR: {result.pagerank.toFixed(6)}</span>
+      </div>
     </article>
   );
 }
