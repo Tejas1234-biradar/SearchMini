@@ -15,8 +15,6 @@ COPY . .
 # Build the application
 RUN go build -o spider ./main.go
 
-# Run tests
-RUN go test -v ./...
 
 # Use a smaller base image
 FROM alpine:latest

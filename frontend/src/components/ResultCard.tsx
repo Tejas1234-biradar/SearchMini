@@ -1,4 +1,4 @@
-import type { SearchResult } from '@searchmini/shared';
+import type { SearchResult } from '../lib/types';
 
 interface ResultCardProps {
   result: SearchResult;

@@ -4,7 +4,7 @@ import { fetchSearchResults, fetchSuggestions } from '../lib/api';
 import SearchBar from '../components/SearchBar';
 import ResultCard from '../components/ResultCard';
 import ThemeToggle from '../components/ThemeToggle';
-import type { SearchResult } from '@searchmini/shared';
+import type { SearchResult } from '../lib/types';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -56,9 +56,15 @@ export default function SearchPage() {
 
     const timer = window.setTimeout(async () => {
       setSuggestionLoading(true);
-      const items = await fetchSuggestions(searchTerm);
-      setSuggestions(items);
-      setSuggestionLoading(false);
+      try {
+        const items = await fetchSuggestions(searchTerm);
+        setSuggestions(items);
+      } catch {
+        // Keep typing/search flow working even if suggestions endpoint fails.
+        setSuggestions([]);
+      } finally {
+        setSuggestionLoading(false);
+      }
     }, 250);
 
     return () => window.clearTimeout(timer);
